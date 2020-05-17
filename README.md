@@ -5,7 +5,14 @@ Uses [XUnit Viewer](https://github.com/lukejpreston/xunit-viewer) to generate re
 
 ## Usage
 
-See [test.yml](./.github/workflows/test.yml) for complete examples.
+See [Workflow Example](./.github/workflows/release.yml) for tests and workflow examples and 
+the corresponding Action Run.
+
+---
+[![Release](https://github.com/AutoModality/action-xunit-viewer/workflows/Release/badge.svg)](https://github.com/AutoModality/action-xunit-viewer/actions)
+
+---
+
 
 
 ### Default Use
