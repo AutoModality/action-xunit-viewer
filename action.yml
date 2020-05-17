@@ -1,6 +1,9 @@
 # action.yml
 name: XUnit Viewer
 description: HTML Test Reports for XUnit / JUnit
+branding:
+  icon: book-open
+  color: green
 inputs:
   results:  
     description: File/Folder of test results
