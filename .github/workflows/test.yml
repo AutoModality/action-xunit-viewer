@@ -6,21 +6,46 @@ jobs:
     name: Default version uses timestamps and package can be installed
     steps:
       - uses: actions/checkout@v1
-      - name: Generate Report
+      - name: Generate Test Report
         id: xunit-viewer
         uses: ./  #use the current project relative to root
       - name: The generated report
         run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
+      - name: Test
+        run: |
+            [ ${{ steps.xunit-viewer.outputs.report-file }} == "test-reports/index.html" ]
       - name: Attach the report
         uses: actions/upload-artifact@v1
         with:
           name: test-reports
           path: test-reports
+  test-alternate-path:
+    runs-on: ubuntu-18.04
+    name: Verifies action accepts alternate locations for reports and output.
+    steps:
+      - uses: actions/checkout@v1
+      - name: Generate Report
+        id: xunit-viewer
+        with:
+          results: alternate-location
+          output: somewhere/custom-report.html
+        uses: ./  #use the current project relative to root
+      - name: The generated report
+        run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
+      - name: Test
+        run: |
+            [ ${{ steps.xunit-viewer.outputs.report-file }} == "somewhere/custom-report.html" ]
+      - name: Attach the report
+        uses: actions/upload-artifact@v1
+        with:
+          name: alternate-test-reports
+          path: somewhere/custom-report.html
   release:
     runs-on: ubuntu-18.04
     name: Release if all tests pass on master branch
     needs:
       - test-defaults
+      - test-alternate-path
     steps:
       - uses: actions/checkout@v1
       - name: Semantic Release
@@ -28,4 +53,3 @@ jobs:
         uses: cycjimmy/semantic-release-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          

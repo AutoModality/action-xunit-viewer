@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" file="logs_test.py" name="logs_test.TestLogs-20200517015243" skipped="0" tests="2" time="0.013" timestamp="2020-05-17T01:52:43">
+	<testcase classname="logs_test.TestLogs" file="test/logs_test.py" line="20" name="test_az_storage_account_sas_substitution" time="0.010" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="logs_test.TestLogs" file="test/logs_test.py" line="9" name="test_azcopy_copy_substituion" time="0.004" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+</testsuite>
