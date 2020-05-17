@@ -14,7 +14,7 @@ if [[ -z "$results" || "$results" == "$DEFAULT" ]]; then
     exit 1
 fi
 
-if [[ -z "$output" || "$results" == "$DEFAULT" ]]; then
+if [[ -z "$output" || "$output" == "$DEFAULT" ]]; then
     
     if [ -d "$results" ];then
         report_dir="$results"
