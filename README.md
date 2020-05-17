@@ -30,14 +30,12 @@ jobs:
     steps:
       - name: XUnit Viewer
         id: xunit-viewer
-        uses: AutoModality/action-xunit-viewer@v1
-      - name: The generated report
-        run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
+        uses: AutoModality/action-xunit-viewer@v1  
       - name: Attach the report
         uses: actions/upload-artifact@v1
         with:
           name: test-reports
-          path: test-reports
+          path: ${{ steps.xunit-viewer.outputs.report-dir }}
 
 ```
 
@@ -57,9 +55,9 @@ jobs:
     steps:
       - name: Generate Report
         id: xunit-viewer
+        uses: AutoModality/action-xunit-viewer@v1
         with:
           results: ${{ env.RESULTS_PATH }}
-        uses: ./  #use the current project relative to root
       - name: The generated report
         run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
       - name: Attach the report

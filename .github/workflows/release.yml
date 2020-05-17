@@ -6,8 +6,7 @@ jobs:
     name: Default version uses timestamps and package can be installed
     steps:
       - uses: actions/checkout@v1
-      - name: Generate Test Report
-        id: xunit-viewer
+      - id: xunit-viewer
         uses: ./  #use the current project relative to root
       - name: The generated report
         run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
@@ -18,7 +17,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: test-reports
-          path: test-reports
+          path: ${{ steps.xunit-viewer.outputs.report-dir }}
   test-alternate-results-path:
     runs-on: ubuntu-18.04
     name: Report is generated in alternate xml results path.
@@ -28,9 +27,9 @@ jobs:
       - uses: actions/checkout@v1
       - name: Generate Report
         id: xunit-viewer
+        uses: ./  #use the current project relative to root
         with:
           results: ${{ env.RESULTS_PATH }}
-        uses: ./  #use the current project relative to root
       - name: The generated report
         run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
       - name: Test
@@ -40,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: alternate-results-path-reports
-          path: ${{ env.RESULTS_PATH }}
+          path: ${{ steps.xunit-viewer.outputs.report-dir }}
   test-alternate-report-path:
     runs-on: ubuntu-18.04
     name: Report is generated at provided location.

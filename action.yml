@@ -15,6 +15,8 @@ inputs:
 outputs:
   report-file:
     description: "The file path where the report can be found. Equal to 'output' input."
+  report-dir:
+    description: "The directory where the report can be found."
 runs:
   using: 'docker'
   image: 'Dockerfile'
