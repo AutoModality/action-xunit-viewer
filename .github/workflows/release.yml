@@ -24,7 +24,6 @@ jobs:
     name: Verifies action accepts alternate locations for reports and output.
     env:
       RESULTS_PATH: alternate-location
-      EXPECTED_REPORT_PATH: ${{ env.RESULTS_PATH }}/index.html
     steps:
       - uses: actions/checkout@v1
       - name: Generate Report
@@ -36,7 +35,7 @@ jobs:
         run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
       - name: Test
         run: |
-            [ ${{ steps.xunit-viewer.outputs.report-file }} == "${{ env.EXPECTED_REPORT_PATH }}" ]
+            [ ${{ steps.xunit-viewer.outputs.report-file }} == "${{ env.RESULTS_PATH }}/index.html" ]
       - name: Attach the report
         uses: actions/upload-artifact@v1
         with:
