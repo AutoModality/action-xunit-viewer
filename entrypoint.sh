@@ -19,6 +19,9 @@ if [[ -z "$output" || "$results" == "$DEFAULT" ]]; then
     exit 1
 fi
 
+#ensure path exists
+mkdir -p "$(dirname "$output")"
+
 xunit-viewer --results="$results" --output="$output"
 
 echo ::set-output name=report-file::"$output"  #reference available to other actions
