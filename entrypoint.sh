@@ -15,8 +15,7 @@ if [[ -z "$results" || "$results" == "$DEFAULT" ]]; then
 fi
 
 if [[ -z "$output" || "$results" == "$DEFAULT" ]]; then
-    echo "output location of report file is required"
-    exit 1
+    output=$(dirname "$results")/index.html
 fi
 
 #ensure path exists

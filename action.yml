@@ -12,7 +12,6 @@ inputs:
   output:  
     description: Output filename including optional path
     required: false
-    default: test-reports/index.html
 outputs:
   report-file:
     description: "The file path where the report can be found. Equal to 'output' input."

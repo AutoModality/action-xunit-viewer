@@ -19,7 +19,30 @@ jobs:
         with:
           name: test-reports
           path: test-reports
-  test-alternate-path:
+  test-alternate-results-path:
+    runs-on: ubuntu-18.04
+    name: Verifies action accepts alternate locations for reports and output.
+    env:
+      RESULTS_PATH: alternate-location
+      EXPECTED_REPORT_PATH: ${{ env.RESULTS_PATH }}/index.html
+    steps:
+      - uses: actions/checkout@v1
+      - name: Generate Report
+        id: xunit-viewer
+        with:
+          results: ${{ env.RESULTS_PATH }}
+        uses: ./  #use the current project relative to root
+      - name: The generated report
+        run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
+      - name: Test
+        run: |
+            [ ${{ steps.xunit-viewer.outputs.report-file }} == "${{ env.EXPECTED_REPORT_PATH }}" ]
+      - name: Attach the report
+        uses: actions/upload-artifact@v1
+        with:
+          name: alternate-results-path-reports
+          path: ${{ env.RESULTS_PATH }}
+  test-alternate-report-path:
     runs-on: ubuntu-18.04
     name: Verifies action accepts alternate locations for reports and output.
     steps:
@@ -27,7 +50,6 @@ jobs:
       - name: Generate Report
         id: xunit-viewer
         with:
-          results: alternate-location
           output: somewhere/custom-report.html
         uses: ./  #use the current project relative to root
       - name: The generated report
@@ -38,14 +60,15 @@ jobs:
       - name: Attach the report
         uses: actions/upload-artifact@v1
         with:
-          name: alternate-test-reports
+          name: alternate-report-path-reports
           path: somewhere/custom-report.html
   release:
     runs-on: ubuntu-18.04
     name: Release if all tests pass on master branch
     needs:
       - test-defaults
-      - test-alternate-path
+      - test-alternate-results-path
+      - test-alternate-report-path
     steps:
       - uses: actions/checkout@v1
       - name: Semantic Release

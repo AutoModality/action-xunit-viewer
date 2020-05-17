@@ -39,5 +39,34 @@ jobs:
           name: test-reports
           path: test-reports
 
+```
+
+### Provide Report Path
+
+Provide an alternate path to the directory where the xml results exist.  The report will be generated in the directory where the results are found.
+
+```
+name: Test
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    name: Generate Test Reports
+    env:
+      RESULTS_PATH: alternate-location
+    steps:
+      - name: Generate Report
+        id: xunit-viewer
+        with:
+          results: ${{ env.RESULTS_PATH }}
+        uses: ./  #use the current project relative to root
+      - name: The generated report
+        run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
+      - name: Attach the report
+        uses: actions/upload-artifact@v1
+        with:
+          name: alternate-results-path-reports
+          path: ${{ env.RESULTS_PATH }}
+
 
 ```
