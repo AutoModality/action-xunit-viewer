@@ -16,7 +16,7 @@ fi
 
 if [[ -z "$output" || "$results" == "$DEFAULT" ]]; then
     
-    if [ -d "$output" ];then
+    if [ -d "$results" ];then
         report_dir="$results"
     else
         report_dir="$(dirname "$results")"
