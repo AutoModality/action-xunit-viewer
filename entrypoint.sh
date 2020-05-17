@@ -15,7 +15,13 @@ if [[ -z "$results" || "$results" == "$DEFAULT" ]]; then
 fi
 
 if [[ -z "$output" || "$results" == "$DEFAULT" ]]; then
-    output=$(dirname "$results")/index.html
+    
+    if [ -d "$output" ];then
+        report_dir="$results"
+    else
+        report_dir="$(dirname "$results")"
+    fi
+    output="$report_dir/index.html"
 fi
 
 #ensure path exists

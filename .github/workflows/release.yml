@@ -21,7 +21,7 @@ jobs:
           path: test-reports
   test-alternate-results-path:
     runs-on: ubuntu-18.04
-    name: Verifies action accepts alternate locations for reports and output.
+    name: Report is generated in alternate xml results path.
     env:
       RESULTS_PATH: alternate-location
     steps:
@@ -43,7 +43,7 @@ jobs:
           path: ${{ env.RESULTS_PATH }}
   test-alternate-report-path:
     runs-on: ubuntu-18.04
-    name: Verifies action accepts alternate locations for reports and output.
+    name: Report is generated at provided location.
     steps:
       - uses: actions/checkout@v1
       - name: Generate Report
