@@ -1,0 +1,53 @@
+name: Release
+on: push
+jobs:
+  test-defaults:
+    runs-on: ubuntu-18.04
+    name: Default version uses timestamps and package can be installed
+    steps:
+      - uses: actions/checkout@v1
+      - name: Package
+        id: package
+        uses: ./  #use the current project relative to root
+        with:
+          dev-repo-entitlement: ${{ secrets.CLOUDSMITH_READ_DEV_ENTITLEMENT }}
+          release-repo-entitlement: ${{ secrets.CLOUDSMITH_READ_RELEASE_ENTITLEMENT }}
+      - name: The generated package
+        run: echo "The artifact is ${{ steps.package.outputs.artifact-path }}"
+      - name: Validate package file provided exists
+        uses: ./.github/actions/test@local
+        with:
+          package-file: ${{ steps.package.outputs.artifact-path }}
+          package-version: ${{ steps.package.outputs.version }}      
+  release:
+    runs-on: ubuntu-16.04
+    name: Release if all tests pass on master branch
+    needs:
+      - test-defaults
+    steps:
+      - uses: actions/checkout@v1
+      - name: Semantic Release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          extra_plugins: |
+            @semantic-release/git
+            @semantic-release/changelog@3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: azure/docker-login@v1
+        if: steps.semantic.outputs.new_release_published == 'true'
+        with:
+          login-server: docker.cloudsmith.io
+          username: cloudsmith-push@automodality.com
+          password: ${{ secrets.CLOUDSMITH_API_KEY }}
+      - name: Push Docker to Cloudsmith
+        if: steps.semantic.outputs.new_release_published == 'true'
+        run: |
+          image_name="docker.cloudsmith.io/automodality/release/amros-build-melodic"
+          image_name_and_version="$image_name":${{ steps.semantic.outputs.new_release_version }}
+          image_name_latest="$image_name":latest
+          docker build -t "$image_name_and_version" .
+          docker tag "$image_name_and_version" "$image_name_latest"
+          docker push "$image_name_and_version"
+          docker push "$image_name_latest"

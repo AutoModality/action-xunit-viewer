@@ -1,0 +1,23 @@
+# action.yml
+name: XUnit Viewer
+description: HTML Test Reports for XUnit / JUnit
+inputs:
+  results:  
+    description: File/Folder of test results
+    required: true
+    default: test-reports
+  output:  
+    description: Output filename including optional path
+    required: false
+    default: test-reports/index.html
+outputs:
+  report-file:
+    description: "The file path where the report can be found. Equal to 'output' input."
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args: # these map in order with entrypoint.sh
+    - ${{ inputs.results }}
+    - ${{ inputs.output }}
+
+  
