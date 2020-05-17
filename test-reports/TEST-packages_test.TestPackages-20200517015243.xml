@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" file="packages_test.py" name="packages_test.TestPackages-20200517015243" skipped="0" tests="22" time="0.052" timestamp="2020-05-17T01:52:43">
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="21" name="test_apt_cache_show_to_depends_version_map_no_lines" time="0.004" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="45" name="test_candidate_version_is_false" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="41" name="test_cli_release_version_is_true" time="0.002" timestamp="2020-05-17T01:52:43">
+		<!--python release util throws an extra hypen in there-->
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="126" name="test_determine_package_version_for_install_declared_package_declared_version" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="118" name="test_determine_package_version_for_install_declared_package_no_version" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="111" name="test_determine_package_version_for_install_no_package_declared_version" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="105" name="test_determine_package_version_for_install_no_package_latest_version" time="0.001" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="99" name="test_determine_package_version_for_install_no_package_no_version_return_defaults" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="74" name="test_latest_version" time="0.001" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="77" name="test_latest_version_of_none_is_none" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="28" name="test_map_to_table" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="25" name="test_package_version_format" time="0.003" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="89" name="test_package_version_from_depends_with_version" time="0.003" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="94" name="test_package_version_from_depends_without_version" time="0.003" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="85" name="test_packages_string_includes_versions" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="81" name="test_packages_string_omits_cli" time="0.003" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="38" name="test_release_version_is_true" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="69" name="test_release_versions_only" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="9" name="test_show_depends_version_map" time="0.008" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="48" name="test_show_version_lines_to_list" time="0.002" timestamp="2020-05-17T01:52:43">
+		<!--Validates a fixture string result from apt-cache call is converted to a list of versions-->
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="64" name="test_show_version_lines_to_list_empty_string_returns_empty_list" time="0.001" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+	<testcase classname="packages_test.TestPackages" file="test/packages_test.py" line="57" name="test_show_version_lines_to_list_ignores_non_version_lines" time="0.002" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+</testsuite>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite errors="0" failures="0" file="platform_test.py" name="platform_test.PlatformTest-20200517015243" skipped="0" tests="1" time="0.007" timestamp="2020-05-17T01:52:43">
+	<testcase classname="platform_test.PlatformTest" file="test/platform_test.py" line="9" name="test_host_not_empty" time="0.007" timestamp="2020-05-17T01:52:43">
+		<system-out>
+<![CDATA[]]>		</system-out>
+		<system-err>
+<![CDATA[]]>		</system-err>
+	</testcase>
+</testsuite>

@@ -1,0 +1,76 @@
+name: Release
+on: push
+jobs:
+  test-defaults:
+    runs-on: ubuntu-18.04
+    name: Default version uses timestamps and package can be installed
+    steps:
+      - uses: actions/checkout@v1
+      - id: xunit-viewer
+        uses: ./  #use the current project relative to root
+      - name: The generated report
+        run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
+      - name: Test
+        run: |
+            [ ${{ steps.xunit-viewer.outputs.report-file }} == "test-reports/index.html" ]
+      - name: Attach the report
+        uses: actions/upload-artifact@v1
+        with:
+          name: test-reports
+          path: ${{ steps.xunit-viewer.outputs.report-dir }}
+  test-alternate-results-path:
+    runs-on: ubuntu-18.04
+    name: Report is generated in alternate xml results path.
+    env:
+      RESULTS_PATH: alternate-location
+    steps:
+      - uses: actions/checkout@v1
+      - name: Generate Report
+        id: xunit-viewer
+        uses: ./  #use the current project relative to root
+        with:
+          results: ${{ env.RESULTS_PATH }}
+      - name: The generated report
+        run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
+      - name: Test
+        run: |
+            [ ${{ steps.xunit-viewer.outputs.report-file }} == "${{ env.RESULTS_PATH }}/index.html" ]
+      - name: Attach the report
+        uses: actions/upload-artifact@v1
+        with:
+          name: alternate-results-path-reports
+          path: ${{ steps.xunit-viewer.outputs.report-dir }}
+  test-alternate-report-path:
+    runs-on: ubuntu-18.04
+    name: Report is generated at provided location.
+    steps:
+      - uses: actions/checkout@v1
+      - name: Generate Report
+        id: xunit-viewer
+        with:
+          output: somewhere/custom-report.html
+        uses: ./  #use the current project relative to root
+      - name: The generated report
+        run: echo "The report is ${{ steps.xunit-viewer.outputs.report-file }}"    
+      - name: Test
+        run: |
+            [ ${{ steps.xunit-viewer.outputs.report-file }} == "somewhere/custom-report.html" ]
+      - name: Attach the report
+        uses: actions/upload-artifact@v1
+        with:
+          name: alternate-report-path-reports
+          path: somewhere/custom-report.html
+  release:
+    runs-on: ubuntu-18.04
+    name: Release if all tests pass on master branch
+    needs:
+      - test-defaults
+      - test-alternate-results-path
+      - test-alternate-report-path
+    steps:
+      - uses: actions/checkout@v1
+      - name: Semantic Release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
