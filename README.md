@@ -13,6 +13,8 @@ the corresponding Action Run.
 
 ---
 
+**Note**: `if:always()` is needed to ensure test results are published when test runners return a failing exit code.
+
 
 
 ### Default Use
