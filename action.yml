@@ -9,6 +9,10 @@ inputs:
     description: File/Folder of test results
     required: true
     default: test-reports
+  title:  
+    description: HTML title e.g. "My Tests". Default is Repository Name.
+    required: false
+    default: ${{ github.repository }}
   output:  
     description: Output filename including optional path
     required: false
