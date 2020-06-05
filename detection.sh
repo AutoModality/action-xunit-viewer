@@ -5,6 +5,10 @@ set -e
 
 file_or_folder="$1"
 
+# detects failures or errors because xunit-viewer unfortunately does not report
+# exits with non zero code if any error or failure is found
+# uses simple grep to look for failures="0" and errors="0"
+
 
 suite_success(){
     file="$1"
