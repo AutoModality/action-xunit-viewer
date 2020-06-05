@@ -16,6 +16,10 @@ inputs:
   output:  
     description: Output filename including optional path
     required: false
+  fail:  
+    description: Return failing exit code when failure or error detected
+    required: false
+    default: "true"
 outputs:
   report-file:
     description: "The file path where the report can be found. Equal to 'output' input."
@@ -28,5 +32,6 @@ runs:
     - ${{ inputs.results }}
     - ${{ inputs.output }}
     - ${{ inputs.title }}
+    - ${{ inputs.fail }}
 
   

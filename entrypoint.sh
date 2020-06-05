@@ -12,6 +12,7 @@ DEFAULT="none" # a way to handle ordered empty arguments of bash
 results="${1}"
 output="${2}"
 title="${3:-Tests}"
+fail="${4:-true}"
 
 
 if [[ -z "$results" || "$results" == "$DEFAULT" ]]; then
@@ -41,3 +42,8 @@ xunit-viewer --results="$results" --output="$output" --console=true --title="$ti
 
 echo ::set-output name=report-file::"$output"  #reference available to other actions
 echo ::set-output name=report-dir::"$report_dir"  #for easy attachment of a folder
+
+# report non zero exit code if any failure or error detected
+if "$fail" == "true";then
+    ./detection.sh "$output"
+fi
