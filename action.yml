@@ -27,5 +27,6 @@ runs:
   args: # these map in order with entrypoint.sh
     - ${{ inputs.results }}
     - ${{ inputs.output }}
+    - ${{ inputs.title }}
 
   
