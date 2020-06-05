@@ -39,7 +39,7 @@ mkdir -p "$(dirname "$output")"
 
 xunit-viewer --results="$results" --output="$output" --console=true --title="$title"
 
-recommended_attachment_name=echo "test-results-$GITHUB_REPOSITORY-$GITHUB_WORKFLOW-$HOSTNAME-$GITHUB_RUN_ID"
+recommended_attachment_name="test-results-$GITHUB_REPOSITORY-$GITHUB_WORKFLOW-$HOSTNAME-$GITHUB_RUN_ID"
 
 echo ::set-output name=report-file::"$output"  #reference available to other actions
 echo ::set-output name=report-dir::"$report_dir"  #for easy attachment of a folder
