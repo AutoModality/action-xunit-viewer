@@ -39,8 +39,8 @@ mkdir -p "$(dirname "$output")"
 
 xunit-viewer --results="$results" --output="$output" --console=true --title="$title"
 
-
-report_name="test-results-$GITHUB_REPOSITORY-$GITHUB_WORKFLOW-$HOSTNAME-$GITHUB_RUN_ID"
+architecture=$(uname -m)
+report_name="test-results-$GITHUB_REPOSITORY-$GITHUB_WORKFLOW-$architecture-$GITHUB_RUN_ID"
 report_name_escaped=$(echo "$report_name" | tr /\\:*\<\>\|? -)
 
 echo ::set-output name=report-file::"$output"  #reference available to other actions
