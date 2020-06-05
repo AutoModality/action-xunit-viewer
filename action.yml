@@ -25,6 +25,8 @@ outputs:
     description: "The file path where the report can be found. Equal to 'output' input."
   report-dir:
     description: "The directory where the report can be found."
+  report-name:
+    description: "Use this name with Artifact Upload for unique attachments"
 runs:
   using: 'docker'
   image: 'Dockerfile'
