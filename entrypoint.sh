@@ -39,11 +39,13 @@ mkdir -p "$(dirname "$output")"
 
 xunit-viewer --results="$results" --output="$output" --console=true --title="$title"
 
-recommended_attachment_name="test-results-$GITHUB_REPOSITORY-$GITHUB_WORKFLOW-$HOSTNAME-$GITHUB_RUN_ID"
+
+report_name="test-results-$GITHUB_REPOSITORY-$GITHUB_WORKFLOW-$HOSTNAME-$GITHUB_RUN_ID"
+report_name_escaped=$(echo "$report_name" | tr /\\:*\<\>\|? -)
 
 echo ::set-output name=report-file::"$output"  #reference available to other actions
 echo ::set-output name=report-dir::"$report_dir"  #for easy attachment of a folder
-echo ::set-output name=report-name::"$recommended_attachment_name"  #to provide a globally unique name for downloading results
+echo ::set-output name=report-name::"$report_name_escaped"  #to provide a globally unique name for downloading results
 
 # report non zero exit code if any failure or error detected
 if "$fail" == "true";then
