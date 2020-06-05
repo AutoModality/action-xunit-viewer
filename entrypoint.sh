@@ -49,5 +49,5 @@ echo ::set-output name=report-name::"$report_name_escaped"  #to provide a global
 
 # report non zero exit code if any failure or error detected
 if "$fail" == "true";then
-    ./detection.sh "$output"
+    ./detection.sh "$results"
 fi
