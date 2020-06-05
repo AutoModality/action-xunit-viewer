@@ -60,6 +60,13 @@ jobs:
         with:
           name: alternate-report-path-reports
           path: somewhere/custom-report.html
+  test-detection:
+    runs-on: ubuntu-18.04
+    name: Run tests to ensure detection is working
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run tests
+        run: test/all.sh   
   release:
     runs-on: ubuntu-18.04
     name: Release if all tests pass on master branch
@@ -67,6 +74,7 @@ jobs:
       - test-defaults
       - test-alternate-results-path
       - test-alternate-report-path
+      - test-detection
     steps:
       - uses: actions/checkout@v1
       - name: Semantic Release
