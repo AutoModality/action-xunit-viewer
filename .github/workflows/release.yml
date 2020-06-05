@@ -14,6 +14,7 @@ jobs:
         run: |
             [ ${{ steps.xunit-viewer.outputs.report-file }} == "test-reports/index.html" ]
       - name: Attach the report
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: test-reports
@@ -36,6 +37,7 @@ jobs:
         run: |
             [ ${{ steps.xunit-viewer.outputs.report-file }} == "${{ env.RESULTS_PATH }}/index.html" ]
       - name: Attach the report
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: alternate-results-path-reports
@@ -56,10 +58,50 @@ jobs:
         run: |
             [ ${{ steps.xunit-viewer.outputs.report-file }} == "somewhere/custom-report.html" ]
       - name: Attach the report
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: alternate-report-path-reports
           path: somewhere/custom-report.html
+  test-show-failure:
+    runs-on: ubuntu-18.04
+    continue-on-error: true
+    name: Demonstrates failure case
+    steps:
+      - uses: actions/checkout@v1
+      - id: xunit-viewer
+        uses: ./  #use the current project relative to root
+        with:
+          results: test/failure
+      - name: Attach the report
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.xunit-viewer.outputs.report-name }}
+          path: ${{ steps.xunit-viewer.outputs.report-dir }}
+  test-ignore-failure:
+    runs-on: ubuntu-18.04
+    name: Demonstrates failure is not reported
+    steps:
+      - uses: actions/checkout@v1
+      - id: xunit-viewer
+        uses: ./  #use the current project relative to root
+        with:
+          results: test/failure
+          fail: false
+      - name: Attach the report
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.xunit-viewer.outputs.report-name }}
+          path: ${{ steps.xunit-viewer.outputs.report-dir }}
+  test-detection:
+    runs-on: ubuntu-18.04
+    name: Run tests to ensure detection is working
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run tests
+        run: test/all.sh   
   release:
     runs-on: ubuntu-18.04
     name: Release if all tests pass on master branch
@@ -67,6 +109,9 @@ jobs:
       - test-defaults
       - test-alternate-results-path
       - test-alternate-report-path
+      - test-detection
+      - test-show-failure
+      - test-ignore-failure
     steps:
       - uses: actions/checkout@v1
       - name: Semantic Release

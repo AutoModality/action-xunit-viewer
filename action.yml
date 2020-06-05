@@ -9,19 +9,31 @@ inputs:
     description: File/Folder of test results
     required: true
     default: test-reports
+  title:  
+    description: HTML title e.g. "My Tests". Default is Repository Name.
+    required: false
+    default: ${{ github.repository }}
   output:  
     description: Output filename including optional path
     required: false
+  fail:  
+    description: Return failing exit code when failure or error detected
+    required: false
+    default: "true"
 outputs:
   report-file:
     description: "The file path where the report can be found. Equal to 'output' input."
   report-dir:
     description: "The directory where the report can be found."
+  report-name:
+    description: "Use this name with Artifact Upload for unique attachments"
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args: # these map in order with entrypoint.sh
     - ${{ inputs.results }}
     - ${{ inputs.output }}
+    - ${{ inputs.title }}
+    - ${{ inputs.fail }}
 
   

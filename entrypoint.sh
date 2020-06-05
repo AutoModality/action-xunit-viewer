@@ -1,4 +1,5 @@
 #!/bin/sh
+#NOTICE: Shell, not bash, so it runs on Alpine
 
 set -e #exit on error
 
@@ -10,6 +11,9 @@ DEFAULT="none" # a way to handle ordered empty arguments of bash
 # output may be provided, otherwise will default to results dir
 results="${1}"
 output="${2}"
+title="${3:-Tests}"
+fail="${4:-true}"
+
 
 if [[ -z "$results" || "$results" == "$DEFAULT" ]]; then
     echo "result file/folder is required"
@@ -33,7 +37,17 @@ fi
 #ensure path exists
 mkdir -p "$(dirname "$output")"
 
-xunit-viewer --results="$results" --output="$output"
+xunit-viewer --results="$results" --output="$output" --console=true --title="$title"
+
+architecture=$(uname -m)
+report_name="test-results-$GITHUB_REPOSITORY-$GITHUB_WORKFLOW-$architecture-$GITHUB_RUN_ID"
+report_name_escaped=$(echo "$report_name" | tr /\\:*\<\>\|? -)
 
 echo ::set-output name=report-file::"$output"  #reference available to other actions
 echo ::set-output name=report-dir::"$report_dir"  #for easy attachment of a folder
+echo ::set-output name=report-name::"$report_name_escaped"  #to provide a globally unique name for downloading results
+
+# report non zero exit code if any failure or error detected
+if "$fail" == "true";then
+    /detection.sh "$results"
+fi
