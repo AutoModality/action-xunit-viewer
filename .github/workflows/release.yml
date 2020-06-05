@@ -65,6 +65,7 @@ jobs:
           path: somewhere/custom-report.html
   test-show-failure:
     runs-on: ubuntu-18.04
+    continue-on-error: true
     name: Demonstrates failure case
     steps:
       - uses: actions/checkout@v1
@@ -72,6 +73,22 @@ jobs:
         uses: ./  #use the current project relative to root
         with:
           results: test/failure
+      - name: Attach the report
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.xunit-viewer.outputs.report-name }}
+          path: ${{ steps.xunit-viewer.outputs.report-dir }}
+  test-ignore-failure:
+    runs-on: ubuntu-18.04
+    name: Demonstrates failure is not reported
+    steps:
+      - uses: actions/checkout@v1
+      - id: xunit-viewer
+        uses: ./  #use the current project relative to root
+        with:
+          results: test/failure
+          fail: false
       - name: Attach the report
         if: always()
         uses: actions/upload-artifact@v1
@@ -93,6 +110,8 @@ jobs:
       - test-alternate-results-path
       - test-alternate-report-path
       - test-detection
+      - test-show-failure
+      - test-ignore-failure
     steps:
       - uses: actions/checkout@v1
       - name: Semantic Release
