@@ -14,6 +14,7 @@ jobs:
         run: |
             [ ${{ steps.xunit-viewer.outputs.report-file }} == "test-reports/index.html" ]
       - name: Attach the report
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: test-reports
@@ -36,6 +37,7 @@ jobs:
         run: |
             [ ${{ steps.xunit-viewer.outputs.report-file }} == "${{ env.RESULTS_PATH }}/index.html" ]
       - name: Attach the report
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: alternate-results-path-reports
@@ -56,6 +58,7 @@ jobs:
         run: |
             [ ${{ steps.xunit-viewer.outputs.report-file }} == "somewhere/custom-report.html" ]
       - name: Attach the report
+        if: always()
         uses: actions/upload-artifact@v1
         with:
           name: alternate-report-path-reports
