@@ -22,6 +22,8 @@ the corresponding Action Run.
 Assumes your test reports exist in a folder named `test-reports` and generates the 
 report at `test-reports/index.html`. 
 
+This test will report a failure if any of the tests failed or errored.  `fail=false` will disable.
+
 ```
 name: Test
 on: push
@@ -36,7 +38,7 @@ jobs:
       - name: Attach the report
         uses: actions/upload-artifact@v1
         with:
-          name: test-reports
+          name: ${{ steps.xunit-viewer.outputs.report-name }}
           path: ${{ steps.xunit-viewer.outputs.report-dir }}
 
 ```
