@@ -1,0 +1,2 @@
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="0.114"><testcase classname="rostest.runner.RosTest" name="testsuper_status" time="0.1142">
+ </testsuite>

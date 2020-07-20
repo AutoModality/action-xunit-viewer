@@ -10,23 +10,34 @@ file_or_folder="$1"
 # uses simple grep to look for failures="0" and errors="0"
 
 
+find_fail(){
+    target=$1
+    file=$2
+    suite_line=$(cat "$file" | grep "$target")
+    if echo "$suite_line" | grep "failures=\"0\"";then
+        if echo "$suite_line" | grep "errors=\"0\"";then
+            return 0
+        else
+            echo "Error found in $file: $suite_line"
+            return 1
+        fi
+    else
+        echo "Failure found in $file: $suite_line"
+        return 1
+    fi
+}
 suite_success(){
     file="$1"
     # look for 0 failures and errors
     # grep reports non zero code if anything but zero failures/errors
-    if cat "$file" | grep "<testsuites";then
-        suite_line=$(cat "$file" | grep "<testsuites")
-        if echo "$suite_line" | grep "failures=\"0\"";then
-            if echo "$suite_line" | grep "errors=\"0\"";then
-                return 0
-            else
-                echo "Error found in $file: $suite_line"
-                return 1
-            fi
-        else
-            echo "Failure found in $file: $suite_line"
-            return 1
-        fi
+    plural="<testsuites "
+    singular="<testsuite "
+    if cat "$file" | grep "$plural";then
+        find_fail $plural $file
+        return $?
+    elif cat "$file" | grep "$singular";then
+        find_fail $singular $file
+        return $?
     else
         echo "Skipping file without suite: $file"
     fi
