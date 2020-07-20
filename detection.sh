@@ -35,6 +35,9 @@ suite_success(){
     if cat "$file" | grep "$plural";then
         find_fail $plural $file
         return $?
+    elif cat "$file" | grep "$singular";then
+        find_fail $singular $file
+        return $?
     else
         echo "Skipping file without suite: $file"
     fi
