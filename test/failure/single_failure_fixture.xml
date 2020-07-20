@@ -1,0 +1,35 @@
+<testsuite errors="0" failures="1" name="unittest.suite.TestSuite" tests="1" time="0.114"><testcase classname="rostest.runner.RosTest" name="testsuper_status" time="0.1142"><failure type="AssertionError">Test Fixture Nodes ['am_super'] failed to launch
+  File "/usr/lib/python2.7/unittest/case.py", line 329, in run
+    testMethod()
+  File "/opt/ros/melodic/lib/python2.7/dist-packages/rostest/runner.py", line 121, in fn
+    self.assert_(not failed, "Test Fixture Nodes %s failed to launch"%failed)
+  File "/usr/lib/python2.7/unittest/case.py", line 422, in assertTrue
+    raise self.failureException(msg)
+</failure></testcase><system-out>&lt;![CDATA[
+[ROSTEST]setup[/home/developer/catkin_ws/src/rostest/am_super_status.test] run_id[13387f10-ca87-11ea-ae12-0242ac110002] starting
+&amp;#x001B;[1mstarted roslaunch server http://94f83af5cd1d:36301/&amp;#x001B;[0m
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rosdistro: melodic
+ * /rosversion: 1.14.5
+
+NODES
+  /
+    am_super (am_super/am_super)
+
+[ROSTEST]setup[/home/developer/catkin_ws/src/rostest/am_super_status.test] run_id[13387f10-ca87-11ea-ae12-0242ac110002] done
+[ROSTEST]Running test [super_status]
+&amp;#x001B;[1mROS_MASTER_URI=http://94f83af5cd1d:46481/&amp;#x001B;[0m
+&amp;#x001B;[1msetting /run_id to 13387f10-ca87-11ea-ae12-0242ac110002&amp;#x001B;[0m
+[ROSTEST]tearDown[/home/developer/catkin_ws/src/rostest/am_super_status.test]
+shutting down processing monitor...
+... shutting down processing monitor complete
+[ROSTEST]rostest teardown /home/developer/catkin_ws/src/rostest/am_super_status.test complete
+
+]]&gt;</system-out><system-err>&lt;![CDATA[
+&amp;#x001B;[31mERROR: cannot launch node of type [am_super/am_super]: Cannot locate node of type [am_super] in package [am_super]. Make sure file exists in package path and permission is set to executable (chmod +x)&amp;#x001B;[0m
+
+]]&gt;</system-err></testsuite>
