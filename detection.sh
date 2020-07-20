@@ -14,8 +14,9 @@ suite_success(){
     file="$1"
     # look for 0 failures and errors
     # grep reports non zero code if anything but zero failures/errors
-    if cat "$file" | grep "<testsuite";then
-        suite_line=$(cat "$file" | grep "<testsuites")
+    target="<testsuite"
+    if cat "$file" | grep "$target";then
+        suite_line=$(cat "$file" | grep "$target")
         if echo "$suite_line" | grep "failures=\"0\"";then
             if echo "$suite_line" | grep "errors=\"0\"";then
                 return 0
