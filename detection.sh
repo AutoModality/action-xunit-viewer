@@ -15,18 +15,18 @@ find_fail(){
     file=$2
     suite_line=$(cat "$file" | grep "$target")
     if echo "$suite_line" | grep "failures=\"0\"";then
-        if echo "$suite_line" | grep -L "errors=\"0\"";then
-            return 0
-        else
+        if echo "$suite_line" | grep -L "errors=\"[1-9]\d*\"";then
             echo "Error found in $file: $suite_line"
             return 1
+        else
+            return 0
         fi
     elif echo "$suite_line" | grep -L "errors=\"0\"";then
-        if echo "$suite_line" | grep "failures=\"0\"";then
-            return 0
-        else
+        if echo "$suite_line" | grep -L "failures=\"[1-9]\d*\"";then
             echo "Error found in $file: $suite_line"
             return 1
+        else
+            return 0
         fi
     else
         echo "Failure found in $file: $suite_line"

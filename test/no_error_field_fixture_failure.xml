@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="5" failures="1" disabled="0" timestamp="2020-06-05T02:02:29" time="0.002" name="AllTests">
+  <testsuite name="StrCompare" tests="5" failures="2" disabled="0" errors="0" time="0.002">
+    <testcase name="CStrEqual" status="run" time="0" classname="StrCompare" />
+    <testcase name="CStrEqual2" status="run" time="0" classname="StrCompare" />
+    <testcase name="CStrEqual3" status="run" time="0" classname="StrCompare" />
+    <testcase name="CStrNotEqual" status="run" time="0" classname="StrCompare">
+      <failure message="/github/workspace/catkin_ws/src/am_super/test/sample_tests.cpp:27&#x0A;      Expected: expectVal&#x0A;      Which is: &quot;hello gtest&quot;&#x0A;To be equal to: actualValFalse&#x0A;      Which is: &quot;hello world&quot;" type=""><![CDATA[/github/workspace/catkin_ws/src/am_super/test/sample_tests.cpp:27
+      Expected: expectVal
+      Which is: "hello gtest"
+To be equal to: actualValFalse
+      Which is: "hello world"]]></failure>
+    </testcase>
+    <testcase name="CStrNotEqual4" status="run" time="0.002" classname="StrCompare">
+      <failure message="/github/workspace/catkin_ws/src/am_super/test/sample_tests.cpp:32&#x0A;      Expected: expectVal&#x0A;      Which is: &quot;hello gtest&quot;&#x0A;To be equal to: actualValFalse&#x0A;      Which is: &quot;hello world&quot;" type=""><![CDATA[/github/workspace/catkin_ws/src/am_super/test/sample_tests.cpp:32
+      Expected: expectVal
+      Which is: "hello gtest"
+To be equal to: actualValFalse
+      Which is: "hello world"]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>
