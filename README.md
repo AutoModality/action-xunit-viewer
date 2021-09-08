@@ -70,5 +70,4 @@ jobs:
           name: alternate-results-path-reports
           path: ${{ env.RESULTS_PATH }}
 
-
 ```
