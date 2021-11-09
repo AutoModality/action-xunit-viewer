@@ -20,9 +20,6 @@ find_fail(){
     elif echo "$suite_line" | grep -q -E "errors=\"[1-9]\\d*\""; then
         echo "Error(s) found in $file: $suite_line"
         return 1
-    elif echo "$suite_line" | grep -qv -E "failures=\"0\""; then
-        echo "Test report may be malformed: No errors were detected, but the failures attribute is missing from the testsuite element."
-        return 1
     fi
 }
 suite_success(){
