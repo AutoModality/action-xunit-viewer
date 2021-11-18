@@ -71,4 +71,3 @@ jobs:
           path: ${{ env.RESULTS_PATH }}
 
 ```
-
