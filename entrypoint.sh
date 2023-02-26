@@ -43,9 +43,9 @@ architecture=$(uname -m)
 report_name="test-results-$GITHUB_REPOSITORY-$GITHUB_WORKFLOW-$architecture-$GITHUB_RUN_ID"
 report_name_escaped=$(echo "$report_name" | tr /\\:*\<\>\|? -)
 
-echo ::set-output name=report-file::"$output"  #reference available to other actions
-echo ::set-output name=report-dir::"$report_dir"  #for easy attachment of a folder
-echo ::set-output name=report-name::"$report_name_escaped"  #to provide a globally unique name for downloading results
+echo "report-file=${output}" >> $GITHUB_OUTPUT  #reference available to other actions
+echo "report-dir=${report_dir}" >> $GITHUB_OUTPUT  #for easy attachment of a folder
+echo "report-name=${report_name_escaped}" >> $GITHUB_OUTPUT  #to provide a globally unique name for downloading results
 
 # report non zero exit code if any failure or error detected
 if "$fail" == "true";then
